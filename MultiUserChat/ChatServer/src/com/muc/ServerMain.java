@@ -11,6 +11,7 @@ public class ServerMain {
         int port = 8818;
 
         try {
+            // Socket is an IP with a port
             ServerSocket serverSocket = new ServerSocket(port);
             while(true) {
                 System.out.println("About to accept client connection...");
@@ -19,7 +20,6 @@ public class ServerMain {
 
                 ServerWorker worker = new ServerWorker(clientSocket);
                 worker.start();
-
             }
         } catch (IOException e) {
             e.printStackTrace();
