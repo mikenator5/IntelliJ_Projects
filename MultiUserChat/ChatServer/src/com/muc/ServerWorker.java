@@ -144,7 +144,7 @@ public class ServerWorker extends Thread {
                     if (worker.getLogin() != null) {
                         if (!login.equals(worker.getLogin())) {
                             String msg2 = "online " + worker.getLogin() + "\n";
-                            worker.send(msg2);
+                            send(msg2);
                         }
                     }
                 }
