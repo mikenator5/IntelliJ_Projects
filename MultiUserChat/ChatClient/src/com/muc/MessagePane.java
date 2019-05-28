@@ -6,6 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+/**
+ * Sends message to another user
+ */
 public class MessagePane extends JPanel implements MessageListener {
     
     private final ChatClient client;
@@ -16,9 +19,11 @@ public class MessagePane extends JPanel implements MessageListener {
     private JTextField inputField = new JTextField();
 
     /**
-     * -
+     *
      * @param client
      * @param login
+     *
+     * When the user double clicks the name. A new window will show up allowing the user to send messages to the person clicked on
      */
     public MessagePane(ChatClient client, String login) {
         this.client = client;
@@ -51,6 +56,5 @@ public class MessagePane extends JPanel implements MessageListener {
             String line = fromLogin + ": " + msgBody;
             listModel.addElement(line);
         }
-
     }
 }

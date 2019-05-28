@@ -6,6 +6,9 @@ import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
 
+/**
+ * Sends message to another user automatically
+ */
 public class ChatClient {
 
     private final String serverName;
@@ -18,12 +21,21 @@ public class ChatClient {
     private ArrayList<UserStatusListener> userStatusListeners = new ArrayList<>();
     private ArrayList<MessageListener> messageListeners = new ArrayList<>();
 
-
+    /**
+     * Set variables in this class
+     * @param serverName
+     * @param serverPort
+     */
     public ChatClient (String serverName, int serverPort) {
         this.serverName = serverName;
         this.serverPort = serverPort;
     }
 
+    /**
+     * Establish connection as guest, then send a message
+     * @param args
+     * @throws IOException
+     */
     public static void main(String[] args) throws IOException {
         ChatClient client = new ChatClient("localhost", 8818);
         client.addUserStatusListener(new UserStatusListener() {
@@ -60,16 +72,33 @@ public class ChatClient {
         }
     }
 
+    /**
+     * Sends a message
+     * @param sendTo
+     * @param msgBody
+     * @throws IOException
+     */
     public void msg(String sendTo, String msgBody) throws IOException {
         String cmd = "msg " + sendTo + " " + msgBody + "\n";
         serverOut.write(cmd.getBytes());
     }
 
+    /**
+     * Handles the logoff
+     * @throws IOException
+     */
     public void logoff() throws IOException {
         String cmd = "logoff\n";
         serverOut.write(cmd.getBytes());
     }
 
+    /**
+     * Handles the login of the user
+     * @param login
+     * @param password
+     * @return
+     * @throws IOException
+     */
     public boolean login(String login, String password) throws IOException {
         String cmd = "login " + login + " " + password + "\n";
         serverOut.write(cmd.getBytes());
@@ -147,6 +176,10 @@ public class ChatClient {
         }
     }
 
+    /**
+     * Connects the user to the server
+     * @return
+     */
     public boolean connect() {
         try {
             this.socket = new Socket(serverName, serverPort);

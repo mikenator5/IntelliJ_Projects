@@ -6,13 +6,19 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 
+/**
+ * Creates a message box when double clicked on
+ */
 public class UserListPane extends JPanel implements UserStatusListener {
 
     private final ChatClient client;
     private JList<String> userListUI;
     private DefaultListModel<String> userListModel;
 
-
+    /**
+     * Generate the second window when double clicked on
+     * @param client
+     */
     public UserListPane(ChatClient client) {
         this.client = client;
         this.client.addUserStatusListener(this); // Second "this" added this class to the ListArray
@@ -41,6 +47,11 @@ public class UserListPane extends JPanel implements UserStatusListener {
     }
 
     // Set up the basic Java Swing GUI
+
+    /**
+     * Creates the main window that will display all users online
+     * @param args
+     */
     public static void main(String[] args) {
         ChatClient client = new ChatClient("localhost", 8818);
 
@@ -52,14 +63,14 @@ public class UserListPane extends JPanel implements UserStatusListener {
         frame.getContentPane().add(userListPane, BorderLayout.CENTER);
         frame.setVisible(true);
 
-        if (client.connect()) {
-            try {
-                client.login("guest", "guest");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-        }
+//        if (client.connect()) {
+//            try {
+//                client.login("guest", "guest");
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//
+//        }
 
     }
 

@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Accepts clients to the server
+ */
 public class Server extends Thread {
 
     private final int serverPort;

@@ -10,6 +10,9 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 
+/**
+ * Handles all of the clients connected to the server
+ */
 public class ServerWorker extends Thread {
 
     private final Socket clientSocket;
@@ -167,6 +170,11 @@ public class ServerWorker extends Thread {
     } // End of handleLogin
 
     // Handles the logging off of the user
+
+    /**
+     * Logs the user off
+     * @throws IOException
+     */
     private void handleLogoff() throws IOException {
 
         server.removeWorker(this);
